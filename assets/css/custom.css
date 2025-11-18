@@ -1,0 +1,43 @@
+.rockBg {
+    background-image: url('../imgs/rockBg.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 30rem;
+    width: 100%;
+}
+
+.btnWidth{
+    width: 11rem;
+}
+
+.btnSecondaryHover:hover{
+    background-color: #dc3545;
+}
+
+.textShadow{
+    text-shadow: 0px 0px 2px black;
+}
+
+.imgSize{
+    width: 28rem;
+}
+
+.fieldWidth{
+    width: 30rem;
+}
+
+.formWidth{
+    width: fit-content;
+}
+
+.formDiv{
+    min-height: calc(100vh - 160px);
+}
+
+.btnHour{
+    width: 4rem;
+}
+
+.btnSelected{
+    background-color: #99212d;
+}
