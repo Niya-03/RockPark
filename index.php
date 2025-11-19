@@ -14,7 +14,7 @@
 
     <nav class="navbar navbar-expand-lg bg-dark-subtle nav-outline-danger">
         <div class="container">
-            <a class="navbar-brand fw-semibold fs-3" href="index.html">Rock Park!</a>
+            <a class="navbar-brand fw-semibold fs-3" href="index.php">Rock Park!</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -22,16 +22,16 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav text-end">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="rooms.html">Стаи</a>
+                        <a class="nav-link" aria-current="page" href="rooms.php">Стаи</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login.html">Вход</a>
+                        <a class="nav-link" href="login.php">Вход</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="register.html">Регистрация</a>
+                        <a class="nav-link" href="register.php">Регистрация</a>
                     </li>
                     <li class="nav-item">
-                        <a href="reserve.html" class="btn btn-danger">Резервирай стая</a>
+                        <a href="reserve.php" class="btn btn-danger">Резервирай стая</a>
                     </li>
                 </ul>
             </div>

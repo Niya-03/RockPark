@@ -8,6 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
     <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body class="bg-black">
@@ -38,34 +42,37 @@
     </nav>
 
     <div class="d-flex align-items-center justify-content-center formDiv">
-        <div class="bg-dark-subtle opacity-100 border rounded-3 my-0 px-4 pt-3 pb-4 formWidth">
+        <div class="bg-dark-subtle opacity-100 border rounded-3 mt-0 mb-5 px-4 pt-3 pb-4 formWidth">
             <div class="h1 text-center">Регистрация</div>
-            <form action="POST">
+            <form>
                 <div class="mb-3">
-                    <label for="userName" class="form-label fw-semibold">Име</label>
-                    <input type="text" class="form-control fieldWidth" id="userName">
+                    <label for="regUser" class="form-label fw-semibold">Име</label>
+                    <input type="text" class="form-control fieldWidth" id="regUser">
                 </div>
                 <div class="mb-3">
-                    <label for="registerEmail" class="form-label fw-semibold">Имейл</label>
-                    <input type="email" class="form-control fieldWidth" id="registerEmail">
+                    <label for="regEmail" class="form-label fw-semibold">Имейл</label>
+                    <input type="email" class="form-control fieldWidth" id="regEmail">
                 </div>
                 <div class="mb-3">
-                    <label for="phone" class="form-label fw-semibold">Телефонен номер</label>
-                    <input type="text" class="form-control fieldWidth" id="phone">
+                    <label for="regPhone" class="form-label fw-semibold">Телефонен номер</label>
+                    <input type="text" class="form-control fieldWidth" id="regPhone">
                 </div>
                 <div class="mb-3">
-                    <label for="pass" class="form-label fw-semibold">Парола</label>
-                    <input type="password" class="form-control fieldWidth" id="pass">
+                    <label for="regPass" class="form-label fw-semibold">Парола</label>
+                    <input type="password" class="form-control fieldWidth" id="regPass">
                 </div>
                 <div class="mb-3">
-                    <label for="rePass" class="form-label fw-semibold">Повторете паролата</label>
-                    <input type="password" class="form-control fieldWidth" id="rePass">
+                    <label for="regRep" class="form-label fw-semibold">Повторете паролата</label>
+                    <input type="password" class="form-control fieldWidth" id="regRep">
                 </div>
+
+                <div class="g-recaptcha" data-sitekey="6Lf8rBEsAAAAABRghF7jMhaZ07Lxw7kOvG7TCEmM"></div>
+
                 <div>
-                    Вече имате профил? Влезте от <a href="login.html">тук</a>
+                    Вече имате профил? Влезте от <a href="login.php">тук</a>
                 </div>
                 <div class="text-center mt-4">
-                    <button type="submit" id="registerBtn" class="btn btn-danger">Регистрация</button>
+                    <button id="registerBtn" class="btn btn-danger">Регистрация</button>
                 </div>
         </div>
         </form>

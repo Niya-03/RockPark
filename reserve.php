@@ -101,7 +101,13 @@
         document.querySelectorAll('.btnHour').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.preventDefault()
-                e.target.classList.add('btnSelected')
+                if(e.target.classList.contains('btnSelected'))
+                {
+                    e.target.classList.remove('btnSelected')
+                }else{
+                    e.target.classList.add('btnSelected')
+                }
+                
             })
         });
 
