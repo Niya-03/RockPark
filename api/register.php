@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "../db.php";
 $username = $_POST['username'] ?? '';
 $email = $_POST['email'] ?? '';
@@ -43,6 +44,7 @@ $stmt->bind_param("ssss", $username, $email, $phone ,$passwordHash);
 
 if($stmt->execute())
 {
+    $_SESSION['username'] = $username;
     echo json_encode(['status' => 'success', 'message' => 'Успешна регистрация!']);
     exit;
 }

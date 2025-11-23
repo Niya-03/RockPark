@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -7,13 +11,18 @@
     <title>RockPark!</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
     <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body class="bg-black">
     <nav class="navbar navbar-expand-lg bg-dark-subtle nav-outline-danger">
         <div class="container">
-            <a class="navbar-brand fw-semibold fs-3" href="#">Rock Park!</a>
+            <a class="navbar-brand fw-semibold fs-3" href="index.php">Rock Park!</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -21,22 +30,32 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav text-end">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Стаи</a>
+                        <a class="nav-link" aria-current="page" href="rooms.php">Стаи</a>
                     </li>
+                    <?php if (!isset($_SESSION['username'])) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">Вход</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register.php">Регистрация</a>
+                        </li>
+                    <?php else : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="logoutBtn">Изход</a>
+                        </li>
+                    <?php endif; ?>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Вход</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Регистрация</a>
-                    </li>
-                    <li class="nav-item">
-                        <button class="btn btn-danger">Резервирай стая</button>
+                        <?php if (isset($_SESSION['username'])) : ?>
+                            <a href="reserve.php" class="btn btn-danger reserveBtn">Резервирай стая</a>
+                        <?php else : ?>
+                            <a href="login.php" class="btn btn-danger reserveBtn">Резервирай стая</a>
+                        <?php endif; ?>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-
     <div class="d-flex align-items-center justify-content-center formDiv">
         <div class="bg-dark-subtle opacity-100 border rounded-3 my-0 px-4 pt-3 pb-4 formWidth mb-5">
             <div class="h1 text-center">Вход</div>
@@ -50,10 +69,10 @@
                     <input type="password" class="form-control fieldWidth" id="loginPass">
                 </div>
                 <div>
-                    Нямате профил? Регистрирайте се <a href="register.html">тук</a>
+                    Нямате профил? Регистрирайте се <a href="register.php">тук</a>
                 </div>
                 <div class="text-center mt-4">
-                    <button type="submit" id="loginBtn" class="btn btn-danger">Вход</button>
+                    <button id="loginBtn" class="btn btn-danger">Вход</button>
                 </div>
         </div>
         </form>

@@ -1,3 +1,8 @@
+<?php
+session_start();
+
+?>
+
 <!doctype html>
 <html lang="en">
 
@@ -7,7 +12,10 @@
     <title>RockPark!</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
     <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="./assets/js/main.js"></script>
 </head>
 
 <body class="bg-black">
@@ -24,14 +32,25 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="rooms.php">Стаи</a>
                     </li>
+                    <?php if (!isset($_SESSION['username'])) : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="login.php">Вход</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="register.php">Регистрация</a>
+                        </li>
+                    <?php else : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" id="logoutBtn">Изход</a>
+                        </li>
+                    <?php endif; ?>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="login.php">Вход</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="register.php">Регистрация</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="reserve.php" class="btn btn-danger">Резервирай стая</a>
+                        <?php if (isset($_SESSION['username'])) : ?>
+                            <a href="reserve.php" class="btn btn-danger reserveBtn">Резервирай стая</a>
+                        <?php else : ?>
+                            <a href="login.php" class="btn btn-danger reserveBtn">Резервирай стая</a>
+                        <?php endif; ?>
                     </li>
                 </ul>
             </div>
@@ -49,13 +68,16 @@
                 <div class="container justify-content-center">
                     <div class="row mt-5">
                         <div class="col col-6 text-end">
-                            <button class="btn btn-danger btnWidth">
-                                Резервирай сега
-                            </button>
+                            <?php if (isset($_SESSION['username'])) : ?>
+                            <a href="reserve.php" class="btn btn-danger reserveBtn">Резервирай стая</a>
+                        <?php else : ?>
+                            <a href="login.php" class="btn btn-danger reserveBtn">Резервирай стая</a>
+                        <?php endif; ?>
+                            
 
                         </div>
                         <div class="col col-6 text-start">
-                            <a href="rooms.html" class="btn text-white border border-2 border-danger btnWidth btnSecondaryHover">
+                            <a href="rooms.php" class="btn text-white border border-2 border-danger btnWidth btnSecondaryHover">
                                 Виж стаите
                             </a>
                         </div>
@@ -78,6 +100,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
         crossorigin="anonymous"></script>
+
 </body>
 
 </html>
