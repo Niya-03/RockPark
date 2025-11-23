@@ -27,7 +27,7 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="rooms.php">Стаи</a>
                     </li>
-                    <?php if (!isset($_SESSION['username'])) : ?>
+                    <?php if (!isset($_SESSION['user_email'])) : ?>
                         <li class="nav-item">
                             <a class="nav-link" href="login.php">Вход</a>
                         </li>
@@ -41,7 +41,7 @@
                     <?php endif; ?>
 
                     <li class="nav-item">
-                        <?php if (isset($_SESSION['username'])) : ?>
+                        <?php if (isset($_SESSION['user_email'])) : ?>
                             <a href="reserve.php" class="btn btn-danger reserveBtn">Резервирай стая</a>
                         <?php else : ?>
                             <a href="login.php" class="btn btn-danger reserveBtn">Резервирай стая</a>

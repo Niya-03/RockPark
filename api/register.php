@@ -44,7 +44,10 @@ $stmt->bind_param("ssss", $username, $email, $phone ,$passwordHash);
 
 if($stmt->execute())
 {
-    $_SESSION['username'] = $username;
+    $userId = $conn->insert_id;
+    
+    $_SESSION['user_id'] = $userId;
+    $_SESSION['user_email'] = $email;
     echo json_encode(['status' => 'success', 'message' => 'Успешна регистрация!']);
     exit;
 }

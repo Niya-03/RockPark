@@ -1,4 +1,11 @@
 $(document).ready(function () {
+    let today = new Date();
+    let year = today.getFullYear();
+    let month = String(today.getMonth() + 1).padStart(2, '0');
+    let day = String(today.getDate()).padStart(2, '0');
+    let minDate = `${year}-${month}-${day}`;
+    $('#reserveDate').prop('min', minDate);
+
     $('#registerBtn').on('click', function (e) {
         e.preventDefault();
         $.post('./api/register.php', {
@@ -79,9 +86,62 @@ $(document).ready(function () {
     })
 
 
+    $('#reserveBtn').on('click', function (e) {
+        e.preventDefault();
+        let selectedTimes = [];
 
+        document.querySelectorAll('.btnSelected').forEach(btn => {
+            selectedTimes.push(btn.dataset.hour);
+        });
 
+        $.post('./api/reserve.php', {
+            room: $('#roomSelect').val(),
+            date: $('#reserveDate').val(),
+            hours: selectedTimes
+        },
+            function (response) {
+                let data = JSON.parse(response);
+                if (data.status == 'error') {
+                    Swal.fire("Грешка", data.message, "error");
+                }
+                else if (data.status == 'success') {
+                    Swal.fire("", data.message, "success").then(() => {
+                        location.href = "index.php"
+                    });
+                }
+            })
 
+    })
+
+    $('#roomSelect').on('change', function () {
+        resetBtns();
+    })
+
+    $('#reserveDate').on('input', function (e) {
+        resetBtns();
+
+        $.post('./api/get_reservation_hours.php', {
+            room: $('#roomSelect').val(),
+            date: $('#reserveDate').val()
+        },
+            function (response) {
+                let data = JSON.parse(response);
+
+                for (const hour of data.hours) {
+                    document.querySelectorAll('.btnHour').forEach(btn => {
+                        if (btn.dataset.hour == hour) {
+                            btn.disabled = true;
+                        }
+                    })
+                }
+            })
+    })
 
 })
+
+function resetBtns() {
+    document.querySelectorAll('.btnHour').forEach(btn => {
+        btn.disabled = false;
+    })
+}
 

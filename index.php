@@ -32,7 +32,7 @@ session_start();
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="rooms.php">Стаи</a>
                     </li>
-                    <?php if (!isset($_SESSION['username'])) : ?>
+                    <?php if (!isset($_SESSION['user_email'])) : ?>
                         <li class="nav-item">
                             <a class="nav-link" href="login.php">Вход</a>
                         </li>
@@ -46,7 +46,7 @@ session_start();
                     <?php endif; ?>
 
                     <li class="nav-item">
-                        <?php if (isset($_SESSION['username'])) : ?>
+                        <?php if (isset($_SESSION['user_email'])) : ?>
                             <a href="reserve.php" class="btn btn-danger reserveBtn">Резервирай стая</a>
                         <?php else : ?>
                             <a href="login.php" class="btn btn-danger reserveBtn">Резервирай стая</a>
@@ -68,7 +68,7 @@ session_start();
                 <div class="container justify-content-center">
                     <div class="row mt-5">
                         <div class="col col-6 text-end">
-                            <?php if (isset($_SESSION['username'])) : ?>
+                            <?php if (isset($_SESSION['user_email'])) : ?>
                             <a href="reserve.php" class="btn btn-danger reserveBtn">Резервирай стая</a>
                         <?php else : ?>
                             <a href="login.php" class="btn btn-danger reserveBtn">Резервирай стая</a>

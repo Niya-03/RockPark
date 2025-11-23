@@ -11,10 +11,12 @@ session_start();
     <title>RockPark!</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="./assets/css/custom.css">
 
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="./assets/js/main.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 
 <body class="bg-black">
@@ -30,7 +32,7 @@ session_start();
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="rooms.php">Стаи</a>
                     </li>
-                    <?php if (!isset($_SESSION['username'])) : ?>
+                    <?php if (!isset($_SESSION['user_email'])) : ?>
                         <li class="nav-item">
                             <a class="nav-link" href="login.php">Вход</a>
                         </li>
@@ -44,7 +46,7 @@ session_start();
                     <?php endif; ?>
 
                     <li class="nav-item">
-                        <?php if (isset($_SESSION['username'])) : ?>
+                        <?php if (isset($_SESSION['user_email'])) : ?>
                             <a href="reserve.php" class="btn btn-danger reserveBtn">Резервирай стая</a>
                         <?php else : ?>
                             <a href="login.php" class="btn btn-danger reserveBtn">Резервирай стая</a>
@@ -58,7 +60,7 @@ session_start();
     <div class="d-flex align-items-center justify-content-center formDiv">
         <div class="bg-dark-subtle opacity-100 border rounded-3 my-0 px-4 pt-3 pb-4 formWidth">
             <div class="h1 text-center">Резервация</div>
-            <form action="POST">
+            <form >
                 <div class="mb-3">
                     <label for="roomSelect" class="form-label fw-semibold">Изберете стая</label>
                     <select class="form-select" aria-label="Default select example" id="roomSelect">
@@ -73,7 +75,7 @@ session_start();
                 </div>
 
                 <div class="mb-3">
-                    <label for="phone" class="form-label fw-semibold">Изберете час или часове</label>
+                    <label class="form-label fw-semibold">Изберете час или часове</label>
                     <div class="container">
                         <div class="row gap-2 mb-2">
                             <button class="btn btn-danger btnHour" data-hour="10">10:00</button>
@@ -93,7 +95,7 @@ session_start();
                 </div>
 
                 <div class="text-center mt-4">
-                    <button type="submit" id="registerBtn" class="btn btn-danger">Резервирайте</button>
+                    <button  id="reserveBtn" class="btn btn-danger">Резервирайте</button>
                 </div>
         </div>
         </form>

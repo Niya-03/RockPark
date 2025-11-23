@@ -17,7 +17,7 @@ $result = $stmt->get_result();
 
 if($user = $result->fetch_assoc()){
     if(password_verify($password, $user['password'])){
-        $_SESSION['username'] = $user['name'];
+        $_SESSION['user_email'] = $user['email'];
         $_SESSION['user_id'] = $user['id'];
 
         echo json_encode(['status' => 'success', 'message' => 'Добре дошъл!']);
