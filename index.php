@@ -41,6 +41,12 @@ session_start();
                         </li>
                     <?php else : ?>
                         <li class="nav-item">
+                            <a class="nav-link" id='myReservationsBtn' href="myReservations.php">Моите резервации</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="editProfile.php">Моят профил</a>
+                        </li>
+                        <li class="nav-item">
                             <a class="nav-link" href="#" id="logoutBtn">Изход</a>
                         </li>
                     <?php endif; ?>

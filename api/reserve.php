@@ -21,7 +21,7 @@ foreach($hours as $hour)
     $stmt->bind_param("sssss", $user_id, $room, $date, $start_time, $end_time);
 
     if (!$stmt->execute()) {
-        echo json_encode(['status' => 'error', 'message' => 'Грешка при резервация за' . $h . ' часа!']);
+        echo json_encode(['status' => 'error', 'message' => 'Грешка при резервация за ' . $h . ' часа!']);
         exit;
     }
 }

@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    loadReservations();
+
     let today = new Date();
     let year = today.getFullYear();
     let month = String(today.getMonth() + 1).padStart(2, '0');
@@ -85,7 +87,6 @@ $(document).ready(function () {
 
     })
 
-
     $('#reserveBtn').on('click', function (e) {
         e.preventDefault();
         let selectedTimes = [];
@@ -106,7 +107,7 @@ $(document).ready(function () {
                 }
                 else if (data.status == 'success') {
                     Swal.fire("", data.message, "success").then(() => {
-                        location.href = "index.php"
+                        location.href = "myReservations.php"
                     });
                 }
             })
@@ -137,7 +138,30 @@ $(document).ready(function () {
             })
     })
 
+    $(document).on('click', '.deleteReservationBtn', function (e) {
+        if (confirm('Сигурни ли сте, че искате да изтриете резервацията?')) {
+            $.post('./api/delete_reservation.php', {
+                deleteId: e.target.dataset.id
+            },
+                function (response) {
+                    let data = JSON.parse(response);
+                    if (data.status == 'error') {
+                        Swal.fire("Грешка", data.message, "error");
+                    }
+                    else if (data.status == 'success') {
+                        Swal.fire("", data.message, "success").then(() => {
+                            loadReservations();
+                        });
+                    }
+                })
+        }
+    })  
 })
+
+function loadReservations() {
+
+    $('#reservationsContainer').empty().load('./api/my_reservations.php');
+}
 
 function resetBtns() {
     document.querySelectorAll('.btnHour').forEach(btn => {

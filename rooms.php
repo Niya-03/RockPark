@@ -19,7 +19,7 @@ session_start();
 
 <body class="bg-black">
 
-    <nav class="navbar navbar-expand-lg bg-dark-subtle nav-outline-danger">
+       <nav class="navbar navbar-expand-lg bg-dark-subtle nav-outline-danger">
         <div class="container">
             <a class="navbar-brand fw-semibold fs-3" href="index.php">Rock Park!</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -39,6 +39,12 @@ session_start();
                             <a class="nav-link" href="register.php">Регистрация</a>
                         </li>
                     <?php else : ?>
+                        <li class="nav-item">
+                            <a class="nav-link" id='myReservationsBtn' href="myReservations.php">Моите резервации</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="editProfile.php">Моят профил</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" id="logoutBtn">Изход</a>
                         </li>
