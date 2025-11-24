@@ -139,28 +139,78 @@ $(document).ready(function () {
     })
 
     $(document).on('click', '.deleteReservationBtn', function (e) {
-        if (confirm('Сигурни ли сте, че искате да изтриете резервацията?')) {
-            $.post('./api/delete_reservation.php', {
-                deleteId: e.target.dataset.id
-            },
-                function (response) {
-                    let data = JSON.parse(response);
-                    if (data.status == 'error') {
-                        Swal.fire("Грешка", data.message, "error");
-                    }
-                    else if (data.status == 'success') {
-                        Swal.fire("", data.message, "success").then(() => {
-                            loadReservations();
-                        });
-                    }
-                })
-        }
-    })  
+
+
+        Swal.fire({
+            title: "Сигурни ли сте, че искате да изтриете резервацията?",
+            showDenyButton: true,
+            confirmButtonText: "Да",
+            denyButtonText: "Не"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.post('./api/delete_reservation.php', {
+                    deleteId: e.target.dataset.id
+                },
+                    function (response) {
+                        let data = JSON.parse(response);
+                        if (data.status == 'error') {
+                            Swal.fire("Грешка", data.message, "error");
+                        }
+                        else if (data.status == 'success') {
+                            Swal.fire("", data.message, "success").then(() => {
+                                loadReservations();
+                            });
+                        }
+                    })
+            }
+        });
+    }
+    )
+
+    $('#editUserBtn').on('click', function (e) {
+        e.preventDefault();
+        $.post('./api/edit_profile.php', {
+            editName: $('#editName').val(),
+            editEmail: $('#editEmail').val(),
+            editPhone: $('#editPhone').val(),
+            currentPass: $('#currentPass').val(),
+            newPass: $('#newPass').val(),
+            reNewPass: $('#reNewPass').val()
+        }, function (response) {
+            let data = JSON.parse(response);
+
+            if (data.status == 'error') {
+                Swal.fire("Грешка", data.message, "error");
+            }
+            else if (data.status == 'success') {
+                Swal.fire("", data.message, "success");
+                $('#currentPass').val('');
+                $('#newPass').val('');
+                $('#reNewPass').val('');
+                loadUserData();
+            }
+        })
+    })
+
+    loadUserData();
 })
 
-function loadReservations() {
 
+function loadReservations() {
     $('#reservationsContainer').empty().load('./api/my_reservations.php');
+}
+
+function loadUserData() {
+    $.post('./api/get_user_data.php', {}, function (response) {
+        let data = JSON.parse(response);
+        if (data.status == 'success') {
+            $('#editName').val(data.user.name);
+            $('#editEmail').val(data.user.email);
+            $('#editPhone').val(data.user.phone);
+        } else if (data.status == 'error') {
+            Swal.fire("Грешка", data.message, "error");
+        }
+    })
 }
 
 function resetBtns() {

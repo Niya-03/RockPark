@@ -39,7 +39,7 @@
                             <a class="nav-link" id='myReservationsBtn' href="myReservations.php">Моите резервации</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="editProfile.php">Моят профил</a>
+                            <a class="nav-link editProfile" href="editProfile.php">Моят профил</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" id="logoutBtn">Изход</a>

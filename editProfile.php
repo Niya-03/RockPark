@@ -13,12 +13,13 @@ session_start();
         integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
 
     <link rel="stylesheet" href="./assets/css/custom.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="./assets/js/main.js"></script>
 </head>
 
 <body class="bg-black">
-        <nav class="navbar navbar-expand-lg bg-dark-subtle nav-outline-danger">
+    <nav class="navbar navbar-expand-lg bg-dark-subtle nav-outline-danger">
         <div class="container">
             <a class="navbar-brand fw-semibold fs-3" href="index.php">Rock Park!</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -42,7 +43,7 @@ session_start();
                             <a class="nav-link" id='myReservationsBtn' href="myReservations.php">Моите резервации</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="editProfile.php">Моят профил</a>
+                            <a class="nav-link editProfile" href="editProfile.php">Моят профил</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#" id="logoutBtn">Изход</a>
@@ -64,36 +65,36 @@ session_start();
     <div class="d-flex align-items-center justify-content-center formDiv mt-5">
         <div class="bg-dark-subtle opacity-100 border rounded-3 mb-5 px-4 pt-3 pb-4 formWidth">
             <div class="h1 text-center">Редактиране на профил</div>
-            <form action="POST">
+            <form>
                 <div class="mb-3">
-                    <label for="userName" class="form-label fw-semibold">Име</label>
-                    <input type="text" class="form-control fieldWidth" id="userName">
+                    <label class="form-label fw-semibold">Име</label>
+                    <input type="text" class="form-control fieldWidth" id="editName">
                 </div>
                 <div class="mb-3">
-                    <label for="registerEmail" class="form-label fw-semibold">Имейл</label>
-                    <input type="email" class="form-control fieldWidth" id="registerEmail">
+                    <label class="form-label fw-semibold">Имейл</label>
+                    <input type="email" class="form-control fieldWidth" id="editEmail">
                 </div>
                 <div class="mb-3">
-                    <label for="phone" class="form-label fw-semibold">Телефонен номер</label>
-                    <input type="text" class="form-control fieldWidth" id="phone">
+                    <label class="form-label fw-semibold">Телефонен номер</label>
+                    <input type="text" class="form-control fieldWidth" id="editPhone">
                 </div>
                 <div class="mb-3">
-                    <label for="pass" class="form-label fw-semibold">Текуща парола</label>
-                    <input type="password" class="form-control fieldWidth" id="pass">
+                    <label class="form-label fw-semibold">Текуща парола</label>
+                    <input type="password" class="form-control fieldWidth" id="currentPass">
                     <div class="text-danger">
                         Попълнете само ако искате да промените паролата си
                     </div>
                 </div>
                 <div class="mb-3">
-                    <label for="pass" class="form-label fw-semibold">Нова парола</label>
-                    <input type="password" class="form-control fieldWidth" id="pass">
+                    <label class="form-label fw-semibold">Нова парола</label>
+                    <input type="password" class="form-control fieldWidth" id="newPass">
                 </div>
                 <div class="mb-3">
-                    <label for="rePass" class="form-label fw-semibold">Повторете новата парола</label>
-                    <input type="password" class="form-control fieldWidth" id="rePass">
+                    <label class="form-label fw-semibold">Повторете новата парола</label>
+                    <input type="password" class="form-control fieldWidth" id="reNewPass">
                 </div>
                 <div class="text-center mt-4">
-                    <button type="submit" id="editUserBtn" class="btn btn-danger">Запазете промените</button>
+                    <button id="editUserBtn" class="btn btn-danger">Запазете промените</button>
                 </div>
         </div>
         </form>
