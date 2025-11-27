@@ -101,12 +101,15 @@ $(document).ready(function () {
             hours: selectedTimes
         },
             function (response) {
+                console.log(response)
                 let data = JSON.parse(response);
                 if (data.status == 'error') {
                     Swal.fire("Грешка", data.message, "error");
+                    refreshBtns();
                 }
                 else if (data.status == 'success') {
                     Swal.fire("", data.message, "success").then(() => {
+                        refreshBtns();
                         location.href = "myReservations.php"
                     });
                 }
@@ -120,7 +123,10 @@ $(document).ready(function () {
 
     $('#reserveDate').on('input', function (e) {
         resetBtns();
+        refreshBtns();
+    })
 
+    function refreshBtns() {
         $.post('./api/get_reservation_hours.php', {
             room: $('#roomSelect').val(),
             date: $('#reserveDate').val()
@@ -136,7 +142,9 @@ $(document).ready(function () {
                     })
                 }
             })
-    })
+    }
+
+
 
     $(document).on('click', '.deleteReservationBtn', function (e) {
 
