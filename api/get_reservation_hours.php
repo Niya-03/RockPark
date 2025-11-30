@@ -13,7 +13,7 @@ $res = $stmt->get_result();
 
 $hours = [];
 while ($row = $res->fetch_assoc()) {
-    $hours[] = (int)$row['hour'];
+    array_push($hours, (int)$row['hour']);
 }
 
 echo json_encode(['status' => 'success', 'hours' => $hours]);
