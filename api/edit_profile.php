@@ -16,6 +16,16 @@ if (empty($editName) || empty($editEmail) || empty($editPhone)) {
     exit;
 }
 
+$stmt = $conn->prepare("SELECT id FROM users WHERE email = ?");
+$stmt->bind_param('s',$editEmail);
+$stmt->execute();
+$stmt->store_result();
+
+if($stmt->num_rows() > 0){
+    echo json_encode(['status' => 'error', 'message' => 'Вече съществува потребител с този имейл!']);
+    exit;
+}
+
 if (!empty($currentPass)) {
     if (empty($newPass) || empty($reNewPass)) {
         echo json_encode(['status' => 'error', 'message' => 'Моля, попълнете всички полета за нова парола!']);

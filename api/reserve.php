@@ -10,6 +10,24 @@ if (empty($room) || empty($date) || empty($hours)) {
     exit;
 }
 
+$stmt = $conn->prepare("SELECT * FROM rooms WHERE id = ?");
+$stmt->bind_param("s", $room);
+$stmt->execute();
+$stmt->store_result();
+
+if($stmt->num_rows == 0){
+    echo json_encode(['status' => 'error', 'message' => 'Невалидна стойност за стая!']);
+    exit;
+}
+
+$today = new DateTime('today');
+
+if($date < $today->format('Y-m-d'))
+{
+    echo json_encode(['status' => 'error', 'message' => 'Не може да се запази резервация за минал ден!']);
+    exit;
+}
+
 $user_id = $_SESSION['user_id'];
 $successfulReservations = [];
 $message = '';
@@ -47,7 +65,6 @@ foreach ($hours as $hour) {
         echo json_encode(['status' => 'error', 'message' => $message]);
         exit;
     }
-
 
     $stmt = $conn->prepare("INSERT INTO reservations (user_id, room_id, date, start_time, end_time) VALUES (?, ?, ?, ?, ?)");
     $stmt->bind_param("sssss", $user_id, $room, $date, $start_time, $end_time);
